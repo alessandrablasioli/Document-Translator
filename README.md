@@ -330,20 +330,6 @@ Optional:
 - Single API call per translation (no unnecessary calls)
 - Can upgrade to GPT-4o for production if quality requires it
 
-## Assessment compliance (AI Engineer Assessment)
-
-| Requirement | Status |
-|-------------|--------|
-| Fresh `git clone` works | Repo is self-contained |
-| `docker compose up --build` runs without errors | See [Getting Started](#getting-started) |
-| Upload a PDF → get a translated PDF back | Supported; PDF in `SUPPORTED_EXTENSIONS`, full flow via upload → translate → download |
-| PROMPTS.md exists and is complete | Log of prompts + fundamentals in [PROMPTS.md](PROMPTS.md) |
-| README includes a testing guide | This README + [TESTING.md](TESTING.md) |
-| No secrets committed | `.env` is in `.gitignore`; use `.env.example` as template |
-| .env.example provided | Present in repo root |
-
-Hard requirements: Python + FastAPI (backend), OpenAI Agents SDK (`openai-agents`), frontend (React), delivery via Docker Compose, PROMPTS.md, README.md, RETROSPECTIVE.md — all satisfied.
-
 ## License
 
 This project is part of an AI Engineer assessment.
