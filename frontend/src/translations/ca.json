@@ -1,0 +1,74 @@
+{
+  "app": {
+    "title": "Stark",
+    "subtitle": "Traductor de Documents"
+  },
+  "upload": {
+    "title": "Pujar Document",
+    "description": "Arrossega i deixa anar el teu fitxer aquí, o fes clic per explorar",
+    "hint": "Formats suportats: PDF, MD, TXT, JSON, XML, DOCX, PPTX (màx. 50MB)"
+  },
+  "translation": {
+    "sourceLanguage": "Idioma d'origen:",
+    "autoDetect": "Detectar automàticament",
+    "selectLanguage": "Traduir a:",
+    "translateButton": "Traduir Document",
+    "uploadNewFile": "Pujar Nou Fitxer",
+    "translating": "Traduint...",
+    "extracting": "Extraient text del document...",
+    "translatingContent": "Traduint contingut...",
+    "generating": "Generant document traduït...",
+    "completed": "Traducció Completada!",
+    "completedMessage": "El teu document ha estat traduït amb èxit.",
+    "detectedSource": "Idioma d'origen detectat",
+    "download": "Descarregar Document Traduït",
+    "translateAnother": "Traduir Un Altre Document",
+    "preview": "Vista prèvia",
+    "sideBySidePreview": "Vista prèvia",
+    "closePreview": "Tancar",
+    "original": "Original",
+    "translated": "Traduït",
+    "historyTitle": "Historial de traduccions",
+    "historyEmpty": "Encara no hi ha traduccions.",
+    "loading": "Carregant",
+    "realtimeProgress": "Utilitzar progrés en temps real",
+    "batchTranslate": "Traduir tot",
+    "batchResults": "Traducció completada",
+    "batchFile": "Fitxer",
+    "batchStatus": "Estat",
+    "batchPreview": "Vista prèvia",
+    "batchDownload": "Descarregar",
+    "formattingNotice": "Nota: les taules, colors i fonts es simplifiquen al fitxer traduït; la maquetació pot diferir de l'original."
+  },
+  "status": {
+    "fileUploaded": "Fitxer pujat:",
+    "uploading": "Pujant...",
+    "uploadingFile": "Pujant fitxer..."
+  },
+  "error": {
+    "title": "Error",
+    "tryAgain": "Tornar a Intentar",
+    "uploadFirst": "Si us plau, puja un fitxer primer"
+  },
+  "footer": {
+    "poweredBy": "Desenvolupat per OpenAI Agents SDK | Stark Future"
+  },
+  "chatbot": {
+    "greeting": "Hola! Estic aquí per ajudar-te amb la traducció de documents. Necessites ajuda?",
+    "greetingSearchHint": "Si ja has pujat un document i vols buscar una paraula, escriu-la al xat.",
+    "title": "Necessites Ajuda?",
+    "subtitle": "Estic aquí per assistir-te",
+    "placeholder": "Escriu la teva pregunta...",
+    "noDocument": "Encara no s'ha pujat cap document. Puja un document per buscar-hi.",
+    "whatICanDo": "Puc ajudar-te amb: entendre què fa aquesta pàgina, com usar el traductor, formats i idiomes suportats, resoldre problemes i buscar dins del teu document pujat. Què t'agradaria saber?",
+    "suggestionsTitle": "Em pots preguntar:",
+    "suggestionsMenuLabel": "Preguntes suggerides",
+    "suggestion1": "Què fa aquesta pàgina?",
+    "suggestion2": "Com faig servir el traductor?",
+    "suggestion3": "Quins formats es suporten?",
+    "suggestion4": "A quins idiomes puc traduir?",
+    "suggestion5": "Tinc un problema o error",
+    "suggestion6": "Resum del document que has pujat"
+  }
+}
+

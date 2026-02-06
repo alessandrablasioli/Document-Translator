@@ -1,0 +1,74 @@
+{
+  "app": {
+    "title": "Stark",
+    "subtitle": "Traductor de Documentos"
+  },
+  "upload": {
+    "title": "Subir Documento",
+    "description": "Arrastra y suelta tu archivo aquí, o haz clic para explorar",
+    "hint": "Formatos soportados: PDF, MD, TXT, JSON, XML, DOCX, PPTX (máx. 50MB)"
+  },
+  "translation": {
+    "sourceLanguage": "Idioma de origen:",
+    "autoDetect": "Detectar automáticamente",
+    "selectLanguage": "Traducir a:",
+    "translateButton": "Traducir Documento",
+    "uploadNewFile": "Subir Nuevo Archivo",
+    "translating": "Traduciendo...",
+    "extracting": "Extrayendo texto del documento...",
+    "translatingContent": "Traduciendo contenido...",
+    "generating": "Generando documento traducido...",
+    "completed": "¡Traducción Completada!",
+    "completedMessage": "Tu documento ha sido traducido exitosamente.",
+    "detectedSource": "Idioma de origen detectado",
+    "download": "Descargar Documento Traducido",
+    "translateAnother": "Traducir Otro Documento",
+    "preview": "Vista previa",
+    "sideBySidePreview": "Vista previa",
+    "closePreview": "Cerrar",
+    "original": "Original",
+    "translated": "Traducido",
+    "historyTitle": "Historial de traducciones",
+    "historyEmpty": "Aún no hay traducciones.",
+    "loading": "Cargando",
+    "realtimeProgress": "Usar progreso en tiempo real",
+    "batchTranslate": "Traducir todo",
+    "batchResults": "Traducción completada",
+    "batchFile": "Archivo",
+    "batchStatus": "Estado",
+    "batchPreview": "Vista previa",
+    "batchDownload": "Descargar",
+    "formattingNotice": "Nota: Las tablas, colores y fuentes se simplifican en el archivo traducido; el diseño puede diferir del original."
+  },
+  "status": {
+    "fileUploaded": "Archivo subido:",
+    "uploading": "Subiendo...",
+    "uploadingFile": "Subiendo archivo..."
+  },
+  "error": {
+    "title": "Error",
+    "tryAgain": "Intentar de Nuevo",
+    "uploadFirst": "Por favor sube un archivo primero"
+  },
+  "footer": {
+    "poweredBy": "Desarrollado por OpenAI Agents SDK | Stark Future"
+  },
+  "chatbot": {
+    "greeting": "¡Hola! Estoy aquí para ayudarte con la traducción de documentos. ¿Necesitas ayuda?",
+    "greetingSearchHint": "Si ya subiste un documento y quieres buscar una palabra en él, escríbela en el chat.",
+    "title": "¿Necesitas Ayuda?",
+    "subtitle": "Estoy aquí para asistirte",
+    "placeholder": "Escribe tu pregunta...",
+    "noDocument": "Aún no se ha subido ningún documento. Sube un documento para buscar en él.",
+    "whatICanDo": "Puedo ayudarte a: entender qué hace esta página, cómo usar el traductor, formatos e idiomas soportados, resolver problemas y buscar dentro de tu documento subido. ¿Qué te gustaría saber?",
+    "suggestionsTitle": "Puedes preguntarme:",
+    "suggestionsMenuLabel": "Preguntas sugeridas",
+    "suggestion1": "¿Qué hace esta página?",
+    "suggestion2": "¿Cómo uso el traductor?",
+    "suggestion3": "¿Qué formatos están soportados?",
+    "suggestion4": "¿A qué idiomas puedo traducir?",
+    "suggestion5": "Tengo un problema o error",
+    "suggestion6": "Resumen del documento que subiste"
+  }
+}
+

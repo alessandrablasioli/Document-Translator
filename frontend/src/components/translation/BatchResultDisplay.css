@@ -1,0 +1,92 @@
+.batch-result-display {
+  text-align: center;
+  width: 100%;
+  margin-top: 0;
+}
+
+.batch-result-display .success-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #10b981;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  margin: 0 auto 20px;
+  font-weight: bold;
+}
+
+.batch-result-display h2 {
+  color: #ffffff;
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.batch-result-display .formatting-notice {
+  font-size: 0.75rem;
+  font-weight: normal;
+  color: #888;
+  margin: 0 0 1.5rem;
+  width: 100%;
+  text-align: left;
+}
+
+.batch-table-wrap {
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.batch-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.batch-table th,
+.batch-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.batch-table th {
+  font-weight: 600;
+  color: #a0a0a0;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.batch-table td {
+  color: #d0d0d0;
+  font-size: 0.95rem;
+}
+
+.batch-status {
+  font-weight: 500;
+}
+
+.batch-status-completed {
+  color: #10b981;
+}
+
+.batch-status-failed {
+  color: #ef4444;
+}
+
+.batch-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.batch-result-display .btn-small {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.875rem;
+}

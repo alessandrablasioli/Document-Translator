@@ -1,0 +1,74 @@
+{
+  "app": {
+    "title": "Stark",
+    "subtitle": "Document Translator"
+  },
+  "upload": {
+    "title": "Upload Document",
+    "description": "Drag and drop your file here, or click to browse",
+    "hint": "Supported formats: PDF, MD, TXT, JSON, XML, DOCX, PPTX (max 50MB)"
+  },
+  "translation": {
+    "sourceLanguage": "Source language:",
+    "autoDetect": "Auto-detect",
+    "selectLanguage": "Translate to:",
+    "translateButton": "Translate Document",
+    "uploadNewFile": "Upload New File",
+    "translating": "Translating...",
+    "extracting": "Extracting text from document...",
+    "translatingContent": "Translating content...",
+    "generating": "Generating translated document...",
+    "completed": "Translation Complete!",
+    "completedMessage": "Your document has been successfully translated.",
+    "detectedSource": "Detected source language",
+    "download": "Download Translated Document",
+    "translateAnother": "Translate Another Document",
+    "preview": "Preview",
+    "sideBySidePreview": "Preview",
+    "closePreview": "Close",
+    "original": "Original",
+    "translated": "Translated",
+    "historyTitle": "Translation History",
+    "historyEmpty": "No translations yet.",
+    "loading": "Loading",
+    "realtimeProgress": "Use real-time progress",
+    "batchTranslate": "Translate All",
+    "batchResults": "Translation completed",
+    "batchFile": "File",
+    "batchStatus": "Status",
+    "batchPreview": "Preview",
+    "batchDownload": "Download",
+    "formattingNotice": "Note: Tables, colours and fonts are simplified in the translated file; layout may differ from the original."
+  },
+  "status": {
+    "fileUploaded": "File uploaded:",
+    "uploading": "Uploading...",
+    "uploadingFile": "Uploading file..."
+  },
+  "error": {
+    "title": "Error",
+    "tryAgain": "Try Again",
+    "uploadFirst": "Please upload a file first"
+  },
+  "footer": {
+    "poweredBy": "Powered by OpenAI Agents SDK | Stark Future"
+  },
+  "chatbot": {
+    "greeting": "Hello! I'm here to help you with document translation. Do you need help?",
+    "greetingSearchHint": "If you already uploaded a document and you want to look for a word in it, just type it in the chat.",
+    "title": "Need Help?",
+    "subtitle": "I'm here to assist you",
+    "placeholder": "Type your question...",
+    "noDocument": "No document uploaded yet. Upload a document to search within it.",
+    "whatICanDo": "I can help you with: understanding what this page does, how to use the translator, supported formats and languages, troubleshooting, and searching inside your uploaded document. What would you like to know?",
+    "suggestionsTitle": "You can ask me:",
+    "suggestionsMenuLabel": "Suggested questions",
+    "suggestion1": "What does this page do?",
+    "suggestion2": "How do I use the translator?",
+    "suggestion3": "What formats are supported?",
+    "suggestion4": "What languages can I translate to?",
+    "suggestion5": "I have a problem or error",
+    "suggestion6": "Resume of the document you uploaded"
+  }
+}
+

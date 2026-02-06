@@ -1,0 +1,112 @@
+.language-selector {
+  position: relative;
+  z-index: 100;
+}
+
+.language-selector-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.language-selector-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.language-flag {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.language-code {
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.language-arrow {
+  transition: transform 0.2s ease;
+  margin-left: 4px;
+}
+
+.language-arrow.open {
+  transform: rotate(180deg);
+}
+
+.language-selector-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+}
+
+.language-selector-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  min-width: 180px;
+  overflow: hidden;
+  z-index: 100;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.language-option:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.language-option.active {
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+}
+
+.language-option.active svg {
+  margin-left: auto;
+  color: #ffffff;
+}
+
+.language-name {
+  flex: 1;
+}

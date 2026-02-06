@@ -1,0 +1,74 @@
+{
+  "app": {
+    "title": "Stark",
+    "subtitle": "Traducteur de Documents"
+  },
+  "upload": {
+    "title": "Télécharger un Document",
+    "description": "Glissez-déposez votre fichier ici, ou cliquez pour parcourir",
+    "hint": "Formats supportés: PDF, MD, TXT, JSON, XML, DOCX, PPTX (max 50MB)"
+  },
+  "translation": {
+    "sourceLanguage": "Langue source:",
+    "autoDetect": "Détection automatique",
+    "selectLanguage": "Traduire en:",
+    "translateButton": "Traduire le Document",
+    "uploadNewFile": "Télécharger un Nouveau Fichier",
+    "translating": "Traduction en cours...",
+    "extracting": "Extraction du texte du document...",
+    "translatingContent": "Traduction du contenu...",
+    "generating": "Génération du document traduit...",
+    "completed": "Traduction Terminée!",
+    "completedMessage": "Votre document a été traduit avec succès.",
+    "detectedSource": "Langue source détectée",
+    "download": "Télécharger le Document Traduit",
+    "translateAnother": "Traduire un Autre Document",
+    "preview": "Aperçu",
+    "sideBySidePreview": "Aperçu",
+    "closePreview": "Fermer",
+    "original": "Original",
+    "translated": "Traduit",
+    "historyTitle": "Historique des traductions",
+    "historyEmpty": "Aucune traduction pour l'instant.",
+    "loading": "Chargement",
+    "realtimeProgress": "Utiliser la progression en temps réel",
+    "batchTranslate": "Tout traduire",
+    "batchResults": "Traduction terminée",
+    "batchFile": "Fichier",
+    "batchStatus": "Statut",
+    "batchPreview": "Aperçu",
+    "batchDownload": "Télécharger",
+    "formattingNotice": "Note : les tableaux, couleurs et polices sont simplifiés dans le fichier traduit ; la mise en page peut différer de l'original."
+  },
+  "status": {
+    "fileUploaded": "Fichier téléchargé:",
+    "uploading": "Téléchargement...",
+    "uploadingFile": "Téléchargement du fichier..."
+  },
+  "error": {
+    "title": "Erreur",
+    "tryAgain": "Réessayer",
+    "uploadFirst": "Veuillez d'abord télécharger un fichier"
+  },
+  "footer": {
+    "poweredBy": "Propulsé par OpenAI Agents SDK | Stark Future"
+  },
+  "chatbot": {
+    "greeting": "Bonjour! Je suis là pour vous aider avec la traduction de documents. Avez-vous besoin d'aide?",
+    "greetingSearchHint": "Si vous avez déjà téléchargé un document et souhaitez y chercher un mot, tapez-le dans le chat.",
+    "title": "Besoin d'Aide?",
+    "subtitle": "Je suis là pour vous assister",
+    "placeholder": "Tapez votre question...",
+    "noDocument": "Aucun document téléchargé pour le moment. Téléchargez un document pour y rechercher.",
+    "whatICanDo": "Je peux vous aider à : comprendre ce que fait cette page, utiliser le traducteur, connaître les formats et langues supportés, dépanner et rechercher dans votre document téléchargé. Que souhaitez-vous savoir ?",
+    "suggestionsTitle": "Vous pouvez me demander :",
+    "suggestionsMenuLabel": "Questions suggérées",
+    "suggestion1": "Que fait cette page ?",
+    "suggestion2": "Comment utiliser le traducteur ?",
+    "suggestion3": "Quels formats sont supportés ?",
+    "suggestion4": "Dans quelles langues puis-je traduire ?",
+    "suggestion5": "J'ai un problème ou une erreur",
+    "suggestion6": "Résumé du document que vous avez téléchargé"
+  }
+}
+

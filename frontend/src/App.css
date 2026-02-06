@@ -1,0 +1,281 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+}
+
+.app-bg-video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 0;
+}
+
+.app-bg-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+.app-lang-bar {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(145deg, rgba(26, 26, 26, 0.92) 0%, rgba(15, 15, 15, 0.95) 100%);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  max-width: 900px;
+  width: 100%;
+  padding: 50px;
+  margin: 20px;
+}
+
+.top-bar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo-img {
+  height: 56px;
+  width: 56px;
+  max-width: 100%;
+  flex-shrink: 0;
+  object-fit: contain;
+  /* Make black background invisible so only the golden ring shows */
+  mix-blend-mode: lighten;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.1;
+}
+
+.logo p {
+  color: #a0a0a0;
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0;
+  margin-top: 4px;
+}
+
+.main-content {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-success {
+  text-align: center;
+  width: 100%;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #10b981;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  margin: 0 auto 20px;
+}
+
+.upload-success p {
+  color: #d0d0d0;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+.batch-file-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  max-height: 120px;
+  overflow-y: auto;
+  text-align: left;
+  color: #a0a0a0;
+  font-size: 0.9rem;
+}
+
+.batch-file-list li {
+  padding: 4px 0;
+}
+
+.error-display {
+  text-align: center;
+  width: 100%;
+}
+
+.error-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #ef4444;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  margin: 0 auto 20px;
+}
+
+.error-display h2 {
+  color: #ef4444;
+  margin-bottom: 10px;
+}
+
+.error-display p {
+  color: #d0d0d0;
+  margin-bottom: 30px;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #6b6b6b;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 5px;
+}
+
+a.btn {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: #ffffff;
+  color: #0a0a0a;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 2px solid #ffffff;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+  background: #f5f5f5;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.history-preview-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.75);
+  animation: fadeIn 0.2s ease;
+}
+
+.history-preview-overlay .side-by-side-preview {
+  max-width: 900px;
+  width: 100%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.history-preview-overlay .preview-columns {
+  flex: 1;
+  min-height: 300px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .logo h1 {
+    font-size: 2rem;
+  }
+}
+

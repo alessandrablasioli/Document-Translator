@@ -1,0 +1,80 @@
+.translation-history {
+  margin-top: 1rem;
+  border: 1px solid var(--border-color, #333);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--card-bg, #1a1a1a);
+}
+
+.translation-history.loading,
+.translation-history.error {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-color, #333);
+}
+
+.history-header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.history-empty {
+  padding: 1.5rem;
+  margin: 0;
+  color: var(--text-muted, #888);
+}
+
+.history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.history-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-color, #333);
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.history-filename {
+  font-weight: 500;
+  flex: 1 1 150px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.history-meta {
+  font-size: 0.875rem;
+  color: var(--text-muted, #888);
+}
+
+.history-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-small {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8125rem;
+}
+
+.history-actions a.btn-small {
+  text-decoration: none;
+}
