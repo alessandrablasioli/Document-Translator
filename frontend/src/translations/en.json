@@ -1,7 +1,7 @@
 {
   "app": {
-    "title": "Stark",
-    "subtitle": "Document Translator"
+    "title": "Document Translator",
+    "subtitle": "AI-powered translation"
   },
   "upload": {
     "title": "Upload Document",
@@ -51,7 +51,7 @@
     "uploadFirst": "Please upload a file first"
   },
   "footer": {
-    "poweredBy": "Powered by OpenAI Agents SDK | Stark Future"
+    "poweredBy": "Powered by OpenAI Agents SDK"
   },
   "chatbot": {
     "greeting": "Hello! I'm here to help you with document translation. Do you need help?",

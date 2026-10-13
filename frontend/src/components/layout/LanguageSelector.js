@@ -3,10 +3,10 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import './LanguageSelector.css';
 
 const languages = [
-  { code: 'en', name: 'English', flag: '🇬🇧' },
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'ca', name: 'Català', flag: '🇪🇸' },
-  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'en', name: 'English' },
+  { code: 'es', name: 'Español' },
+  { code: 'ca', name: 'Català' },
+  { code: 'fr', name: 'Français' },
 ];
 
 function LanguageSelector() {
@@ -27,7 +27,6 @@ function LanguageSelector() {
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Change language"
       >
-        <span className="language-flag">{currentLang.flag}</span>
         <span className="language-code">{currentLang.code.toUpperCase()}</span>
         <svg 
           className={`language-arrow ${isOpen ? 'open' : ''}`}
@@ -50,7 +49,6 @@ function LanguageSelector() {
                 className={`language-option ${language === lang.code ? 'active' : ''}`}
                 onClick={() => handleLanguageChange(lang.code)}
               >
-                <span className="language-flag">{lang.flag}</span>
                 <span className="language-name">{lang.name}</span>
                 {language === lang.code && (
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">

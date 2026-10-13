@@ -3,23 +3,23 @@
 }
 
 .file-upload-area {
-  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border: 2px dashed rgba(232, 154, 176, 0.45);
   border-radius: 16px;
   padding: 60px 40px;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(232, 154, 176, 0.06);
 }
 
 .file-upload-area:hover {
-  border-color: rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(232, 154, 176, 0.75);
+  background: rgba(232, 154, 176, 0.12);
 }
 
 .file-upload-area.dragging {
-  border-color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
+  border-color: #ffc9d8;
+  background: rgba(232, 154, 176, 0.18);
   transform: scale(1.02);
 }
 
@@ -36,13 +36,13 @@
 }
 
 .file-upload-area p {
-  color: #a0a0a0;
+  color: #d9c6ce;
   font-size: 1rem;
 }
 
 .upload-hint {
   text-align: center;
-  color: #6b6b6b;
+  color: #c9a8b4;
   font-size: 0.9rem;
   margin-top: 15px;
 }

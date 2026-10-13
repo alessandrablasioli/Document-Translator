@@ -20,7 +20,7 @@ pip install pytest pytest-asyncio pytest-cov httpx
 
 ### Run all backend tests
 
-From the **project root** (so `backend` and `venv_sf` are visible):
+From the **project root**:
 
 ```bash
 python -m pytest backend/tests/ -v

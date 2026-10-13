@@ -276,16 +276,6 @@ function App() {
 
   return (
     <div className="App">
-      <video
-        className="app-bg-video"
-        src="/home-main-hero-video-mobile-2025.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        aria-hidden
-      />
-      <div className="app-bg-overlay" />
       <div className="app-lang-bar">
         <LanguageSelector />
       </div>
@@ -297,7 +287,6 @@ function App() {
         </div>
         <header className="header">
           <div className="logo">
-            <img src="/logo.png" alt="Document Translator" className="logo-img" />
             <div className="logo-text">
               <h1>{t('app.title')}</h1>
               <p>{t('app.subtitle')}</p>

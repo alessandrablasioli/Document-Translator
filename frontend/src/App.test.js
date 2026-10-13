@@ -16,8 +16,8 @@ describe('App user flow', () => {
 
   it('renders app title and upload area when no file is uploaded', () => {
     render(<App />);
-    expect(screen.getByRole('button', { name: /the stark future of translation/i })).toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: /the stark future of translation/i }));
+    expect(screen.getByRole('button', { name: /start translating/i })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /start translating/i }));
     expect(screen.getByRole('heading', { name: /upload document/i })).toBeInTheDocument();
   });
 
@@ -45,7 +45,7 @@ describe('App user flow', () => {
       });
 
     render(<App />);
-    fireEvent.click(screen.getByRole('button', { name: /the stark future of translation/i }));
+    fireEvent.click(screen.getByRole('button', { name: /start translating/i }));
 
     // 1. Upload: select a file
     const file = new File(['hello'], 'doc.txt', { type: 'text/plain' });
@@ -93,7 +93,7 @@ describe('App user flow', () => {
     });
 
     render(<App />);
-    fireEvent.click(screen.getByRole('button', { name: /the stark future of translation/i }));
+    fireEvent.click(screen.getByRole('button', { name: /start translating/i }));
     const input = document.querySelector('input[type="file"]');
     fireEvent.change(input, { target: { files: [new File(['x'], 'f.txt', { type: 'text/plain' })] } });
 
@@ -130,7 +130,7 @@ describe('App user flow', () => {
       });
 
     render(<App />);
-    fireEvent.click(screen.getByRole('button', { name: /the stark future of translation/i }));
+    fireEvent.click(screen.getByRole('button', { name: /start translating/i }));
     const input = document.querySelector('input[type="file"]');
     fireEvent.change(input, { target: { files: [file1, file2] } });
 

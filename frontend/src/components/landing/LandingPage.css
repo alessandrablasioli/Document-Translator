@@ -3,29 +3,37 @@
   inset: 0;
   z-index: 1000;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background:
+    radial-gradient(900px 520px at 50% 115%, rgba(196, 112, 140, 0.28), transparent 62%),
+    #121018;
+  letter-spacing: 0;
+  font-weight: 500;
 }
 
-.landing-video {
+.landing-glow {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
-}
-
-.landing-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  filter: blur(46px);
   pointer-events: none;
+}
+
+.landing-glow-a {
+  width: 440px;
+  height: 440px;
+  top: -140px;
+  left: -90px;
+  background: rgba(232, 154, 176, 0.28);
+}
+
+.landing-glow-b {
+  width: 380px;
+  height: 380px;
+  right: -70px;
+  bottom: -90px;
+  background: rgba(244, 186, 140, 0.22);
 }
 
 .landing-content {
@@ -34,63 +42,147 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 4rem;
-  padding: 2rem;
-  width: 100%;
-  max-width: 90vw;
+  text-align: center;
+  gap: 1.05rem;
+  padding: 2rem 1.5rem;
+  width: min(640px, 92vw);
 }
 
-.landing-logo-wrap {
-  flex-shrink: 0;
+.landing-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.85rem;
 }
 
-.landing-logo {
-  height: 40px;
-  width: auto;
-  max-width: 280px;
+.spark {
+  position: absolute;
+  color: #f3c7d4;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.spark-a {
+  top: -6px;
+  left: 8px;
+}
+
+.spark-b {
+  right: 2px;
+  bottom: 8px;
+  font-size: 0.75rem;
+  color: #f6d3b4;
+}
+
+.doc-card {
+  width: 96px;
+  height: 122px;
+  border-radius: 22px;
+  padding: 22px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 9px;
+  background: linear-gradient(180deg, #fff8f4 0%, #ffe8df 100%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 16px 32px rgba(70, 28, 48, 0.28);
+}
+
+.line {
   display: block;
-  filter: brightness(0) invert(1);
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(122, 78, 96, 0.28);
+}
+
+.line.short {
+  width: 62%;
+}
+
+.doc-card-back {
+  transform: rotate(-9deg) translateY(8px);
+}
+
+.doc-card-front {
+  transform: rotate(7deg);
+}
+
+.doc-bridge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e889a4;
+  background: #fff4f7;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 18px rgba(70, 28, 48, 0.22);
+  z-index: 1;
+}
+
+.landing-kicker {
+  margin: 0;
+  color: #e7b7c6;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.landing-title {
+  margin: 0;
+  color: #fff7f8;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  text-transform: none;
+  line-height: 1.05;
+}
+
+.landing-lead {
+  margin: 0.1rem 0 0.45rem;
+  max-width: 34rem;
+  color: #d9c6ce;
+  font-size: 1.05rem;
+  font-weight: 450;
+  letter-spacing: 0;
+  line-height: 1.55;
 }
 
 .landing-cta {
-  padding: 1.25rem 2.5rem;
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: none;
-  color: #0a0a0a;
-  background: #ffffff;
-  border: 2px solid rgba(255, 255, 255, 0.9);
-  border-radius: 24px;
+  margin-top: 0.35rem;
+  padding: 0.95rem 1.7rem;
+  font-size: 1rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  color: #4a2432;
+  background: linear-gradient(180deg, #ffe7ef 0%, #ffc9d8 100%);
+  border: none;
+  border-radius: 999px;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 24px rgba(180, 70, 110, 0.28);
 }
 
 .landing-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 16px 30px rgba(180, 70, 110, 0.34);
 }
 
 .landing-cta:active {
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 @media (max-width: 768px) {
-  .landing-content {
-    gap: 3rem;
+  .doc-card {
+    width: 80px;
+    height: 104px;
   }
 
-  .landing-logo {
-    height: 32px;
-    max-width: 220px;
-  }
-
-  .landing-cta {
-    padding: 1rem 1.75rem;
-    font-size: 1rem;
-    border-radius: 20px;
-    text-align: center;
+  .landing-lead {
+    font-size: 0.98rem;
   }
 }

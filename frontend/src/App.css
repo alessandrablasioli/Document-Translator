@@ -5,26 +5,36 @@
   justify-content: center;
   padding: 20px;
   position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(900px 520px at 50% 115%, rgba(196, 112, 140, 0.28), transparent 62%),
+    #121018;
 }
 
-.app-bg-video {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
+.App::before,
+.App::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(46px);
+  pointer-events: none;
   z-index: 0;
 }
 
-.app-bg-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  z-index: 1;
+.App::before {
+  width: 440px;
+  height: 440px;
+  top: -140px;
+  left: -90px;
+  background: rgba(232, 154, 176, 0.28);
+}
+
+.App::after {
+  width: 380px;
+  height: 380px;
+  right: -70px;
+  bottom: -90px;
+  background: rgba(244, 186, 140, 0.22);
 }
 
 .app-lang-bar {
@@ -37,10 +47,10 @@
 .container {
   position: relative;
   z-index: 2;
-  background: linear-gradient(145deg, rgba(26, 26, 26, 0.92) 0%, rgba(15, 15, 15, 0.95) 100%);
+  background: linear-gradient(160deg, rgba(48, 30, 40, 0.9) 0%, rgba(24, 16, 24, 0.94) 100%);
   border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(232, 154, 176, 0.28);
+  box-shadow: 0 20px 60px rgba(70, 28, 48, 0.45);
   max-width: 900px;
   width: 100%;
   padding: 50px;
@@ -57,6 +67,7 @@
 .header {
   text-align: center;
   margin-bottom: 50px;
+  padding-top: 2.75rem;
 }
 
 .logo {
@@ -64,16 +75,6 @@
   flex-direction: column;
   align-items: center;
   gap: 16px;
-}
-
-.logo-img {
-  height: 56px;
-  width: 56px;
-  max-width: 100%;
-  flex-shrink: 0;
-  object-fit: contain;
-  /* Make black background invisible so only the golden ring shows */
-  mix-blend-mode: lighten;
 }
 
 .logo-text {
@@ -86,7 +87,7 @@
   font-size: 3.5rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: #ffffff;
+  color: #fff7f8;
   margin: 0;
   text-transform: uppercase;
   font-family: 'Inter', sans-serif;
@@ -94,7 +95,7 @@
 }
 
 .logo p {
-  color: #a0a0a0;
+  color: #e7b7c6;
   font-size: 1.1rem;
   font-weight: 400;
   letter-spacing: 0.05em;
@@ -130,7 +131,7 @@
 }
 
 .upload-success p {
-  color: #d0d0d0;
+  color: #d9c6ce;
   font-size: 1.1rem;
   margin-bottom: 30px;
 }
@@ -142,7 +143,7 @@
   max-height: 120px;
   overflow-y: auto;
   text-align: left;
-  color: #a0a0a0;
+  color: #d9c6ce;
   font-size: 0.9rem;
 }
 
@@ -174,7 +175,7 @@
 }
 
 .error-display p {
-  color: #d0d0d0;
+  color: #d9c6ce;
   margin-bottom: 30px;
 }
 
@@ -182,8 +183,8 @@
   text-align: center;
   margin-top: 40px;
   padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  color: #6b6b6b;
+  border-top: 1px solid rgba(232, 154, 176, 0.22);
+  color: #c9a8b4;
   font-size: 0.85rem;
   letter-spacing: 0.05em;
 }
@@ -191,7 +192,7 @@
 .btn {
   padding: 12px 24px;
   border: none;
-  border-radius: 8px;
+  border-radius: 999px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -205,32 +206,33 @@ a.btn {
 }
 
 .btn-primary {
-  background: #ffffff;
-  color: #0a0a0a;
+  background: linear-gradient(180deg, #ffe7ef 0%, #ffc9d8 100%);
+  color: #4a2432;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  border: 2px solid #ffffff;
+  border: none;
+  box-shadow: 0 10px 24px rgba(180, 70, 110, 0.28);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
-  background: #f5f5f5;
+  box-shadow: 0 16px 30px rgba(180, 70, 110, 0.34);
+  background: linear-gradient(180deg, #fff0f5 0%, #ffd0dc 100%);
 }
 
 .btn-secondary {
-  background: transparent;
-  color: #ffffff;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(232, 154, 176, 0.08);
+  color: #fff7f8;
+  border: 2px solid rgba(232, 154, 176, 0.45);
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(232, 154, 176, 0.16);
+  border-color: rgba(232, 154, 176, 0.7);
 }
 
 .btn:disabled {

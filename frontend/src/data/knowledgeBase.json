@@ -2,7 +2,7 @@
   "en": {
     "about": {
       "title": "About This Page",
-      "description": "Stark Document Translator is an AI-powered tool that translates documents between multiple languages while preserving formatting and structure.",
+      "description": "Document Translator is an AI-powered tool that translates documents between multiple languages while preserving formatting and structure.",
       "purpose": "This application allows users to upload documents in various formats (PDF, Markdown, TXT, JSON, XML, DOCX) and translate them to their desired target language using OpenAI's advanced translation models."
     },
     "features": {
@@ -41,7 +41,7 @@
   "es": {
     "about": {
       "title": "Acerca de Esta Página",
-      "description": "Stark Document Translator es una herramienta impulsada por IA que traduce documentos entre múltiples idiomas preservando el formato y la estructura.",
+      "description": "Document Translator es una herramienta impulsada por IA que traduce documentos entre múltiples idiomas preservando el formato y la estructura.",
       "purpose": "Esta aplicación permite a los usuarios subir documentos en varios formatos (PDF, Markdown, TXT, JSON, XML, DOCX) y traducirlos al idioma de destino deseado usando los modelos avanzados de traducción de OpenAI."
     },
     "features": {
@@ -79,7 +79,7 @@
   "ca": {
     "about": {
       "title": "Sobre Aquesta Pàgina",
-      "description": "Stark Document Translator és una eina impulsada per IA que tradueix documents entre múltiples idiomes preservant el format i l'estructura.",
+      "description": "Document Translator és una eina impulsada per IA que tradueix documents entre múltiples idiomes preservant el format i l'estructura.",
       "purpose": "Aquesta aplicació permet als usuaris pujar documents en diversos formats (PDF, Markdown, TXT, JSON, XML, DOCX) i traduir-los a l'idioma de destinació desitjat usant els models avançats de traducció d'OpenAI."
     },
     "features": {
@@ -117,7 +117,7 @@
   "fr": {
     "about": {
       "title": "À Propos de Cette Page",
-      "description": "Stark Document Translator est un outil alimenté par l'IA qui traduit des documents entre plusieurs langues tout en préservant le formatage et la structure.",
+      "description": "Document Translator est un outil alimenté par l'IA qui traduit des documents entre plusieurs langues tout en préservant le formatage et la structure.",
       "purpose": "Cette application permet aux utilisateurs de télécharger des documents dans divers formats (PDF, Markdown, TXT, JSON, XML, DOCX) et de les traduire dans la langue cible souhaitée en utilisant les modèles de traduction avancés d'OpenAI."
     },
     "features": {

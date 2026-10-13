@@ -1,7 +1,7 @@
 {
   "app": {
-    "title": "Stark",
-    "subtitle": "Traducteur de Documents"
+    "title": "Traducteur de Documents",
+    "subtitle": "Traduction par IA"
   },
   "upload": {
     "title": "Télécharger un Document",
@@ -51,7 +51,7 @@
     "uploadFirst": "Veuillez d'abord télécharger un fichier"
   },
   "footer": {
-    "poweredBy": "Propulsé par OpenAI Agents SDK | Stark Future"
+    "poweredBy": "Propulsé par OpenAI Agents SDK"
   },
   "chatbot": {
     "greeting": "Bonjour! Je suis là pour vous aider avec la traduction de documents. Avez-vous besoin d'aide?",

@@ -38,7 +38,7 @@
 
 .progress-bar {
   height: 100%;
-  background: #ffffff;
+  background: linear-gradient(90deg, #ffc9d8, #f6d3b4);
   border-radius: 6px;
   transition: width 0.3s ease;
   animation: shimmer 2s infinite;

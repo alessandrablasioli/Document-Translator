@@ -1,336 +1,140 @@
-# Stark Document Translator
+# Document Translator
 
-An AI-powered document translation tool that translates documents using OpenAI's Agents SDK. Built with FastAPI backend and React frontend, featuring a modern, user-friendly interface branded for Stark.
+Web app that translates documents with OpenAI. You upload a file, choose the languages, and download a translated file in the same format.
 
-## Summary — What This Project Does
+The interface is a React app. The API is FastAPI. Translation runs through the OpenAI Agents SDK: one agent calls three tools in order — extract the text, translate it, then check the result.
 
-- **Input:** One or more files (PDF, DOCX, MD, TXT, JSON, XML, PPTX) + target language (and optional source language or auto-detect).
-- **Output:** Translated file(s) in the same format, with optional side-by-side preview and translation history.
-- **Flow:** Upload → (optional: batch upload) → choose source/target language → translate (sync or real-time progress) → download. Translation uses a **multi-agent pipeline** (Extraction → Translation → Validation) via the OpenAI Agents SDK, with chunking for large documents, retry logic, translation memory, observability, and an MCP server for IDE integration.
+## What you can do
 
-## Architecture
+- Upload one file or several at once (PDF, DOCX, PPTX, Markdown, TXT, JSON, XML, up to 50 MB each).
+- Pick a source language or let the app detect it, then pick a target language.
+- Follow progress while a translation runs, then download the result.
+- Preview original and translated text side by side.
+- Reopen past translations from the history list.
+- Ask the in-app helper how the page works, or search for a word inside the uploaded document.
+- Switch the interface between English, Spanish, French, and Catalan.
 
-### Overview
+Sample files for every supported format are in `test-files/`.
 
-The application follows a client-server architecture with clear separation of concerns:
+## How a translation runs
 
-- **Frontend**: React-based single-page application providing an intuitive user interface
-- **Backend**: FastAPI REST API handling file uploads, translation processing, and file downloads
-- **AI Integration**: OpenAI GPT models for document translation
+1. **Extract.** The file is read and turned into text. Paragraphs are kept so the structure is not flattened into one block.
+2. **Translate.** Short documents go out in one request. Longer ones (over about 100,000 characters) are split on paragraph boundaries. Each chunk carries a bit of the previous chunk so terms stay consistent. Repeated phrases can be served from an in-memory cache. Failed calls are retried with backoff.
+3. **Validate.** A check looks at whether the translation is complete and whether the formatting cues survived.
+4. **Write the file.** The translated text is saved in the original format and offered for download.
 
-### Technology Stack
+The model used for translation is GPT-4o-mini, with a low temperature so wording stays stable. The OpenAI key is read from the environment and is never stored in the repo.
 
-#### Backend
-- **FastAPI**: Modern, fast web framework for building APIs
-- **OpenAI Agents SDK**: Agent-based translation with tool calling (`openai-agents>=0.1.0`)
-- **OpenAI SDK**: Integration with OpenAI's GPT models for translation
-- **pypdf**: PDF text extraction
-- **ReportLab**: PDF generation from translated text
-- **python-docx**: DOCX file processing
-- **Python 3.11**: Backend runtime
+Tables, colours, and custom fonts are simplified in the output. The translated file keeps the text and the format type, not a pixel-perfect copy of the layout.
 
-#### Frontend
-- **React 18**: UI framework
-- **Axios**: HTTP client for API communication
-- **Modern CSS**: Responsive design with gradient styling
+## Stack
 
-### System Design Decisions
+- **Frontend:** React 18
+- **Backend:** Python 3.11, FastAPI
+- **Translation:** OpenAI Agents SDK (`openai-agents`) and the OpenAI API
+- **Documents:** pypdf, ReportLab, python-docx, python-pptx
 
-#### 1. **Multi-Agent Architecture with Handoffs**
+## Run it
 
-The system uses a multi-agent architecture with proper agent orchestration and handoffs:
-- **Extraction Agent**: Specialized in extracting text from documents while preserving structure
-- **Translation Agent**: Focused on translating text with chunking, context preservation, and retry logic
-- **Validation Agent**: Verifies translation quality, completeness, and formatting preservation
-- **Agent Orchestrator**: Coordinates the flow (Extraction → Translation → Validation)
-- **SDK tools**: `extract_document`, `translate_text`, `validate_translation` (logic lives in ExtractionAgent, TranslationAgent, ValidationAgent)
-- **Observability**: Tracing and metrics for each step
+You need Docker and an OpenAI API key.
 
-**Why Multi-Agent Approach:**
-- Demonstrates proper agent orchestration and handoffs (assessment requirement)
-- Separation of concerns: each agent has a specialized role
-- Better observability: can trace each agent's contribution
-- Enables independent optimization of each step
-- Foundation for adding more agents (e.g., formatting, quality validation)
-- Shows understanding of agent engineering principles
-
-**SDK implementation:** The translation path uses the **OpenAI Agents SDK** (`openai-agents`): one `Agent` with three `FunctionTool`s (`extract_document`, `translate_text`, `validate_translation`) run via `Runner.run()` (async under FastAPI). Extraction, translation, and validation logic lives inside those tools. See `backend/services/agents/sdk_translation_workflow.py` and `agent_orchestrator.py` (which delegates to it).
-
-**Agent flow (conceptually):**
-1. **Extraction** (tool) → extracts text from the document
-2. **Translation** (tool) → translates with chunking, retry, translation memory; optional source-language detection
-3. **Validation** (tool) → checks quality; final output is the translated text
-4. **Orchestrator** calls the SDK workflow and returns the same API response shape as before
-
-#### 2. **Document Processing Strategy with Chunking**
-
-**Current Approach**: 
-- Extract text → Check if chunking needed → Translate (with chunking if needed) → Generate file
-
-**Chunking Strategy**:
-- Automatic detection: Documents >100K characters (~25K tokens) are chunked
-- Paragraph-aware splitting: Preserves paragraph boundaries
-- Context preservation: Each chunk includes context from previous chunk for terminology consistency
-- Sequential processing: Chunks processed in order with context passing
-- Reassembly: Translated chunks reassembled maintaining structure
-
-**Benefits**:
-- Handles documents of any size
-- Maintains translation consistency across chunks
-- Preserves document structure
-- Graceful error handling (one chunk failure doesn't break entire translation)
-
-#### 3. **File Handling**
-
-- **Upload**: Files stored temporarily with UUID-based naming
-- **Processing**: In-memory text extraction and translation
-- **Output**: Translated file in the same format as the input (PDF, DOCX, etc.)
-- **Cleanup**: Files can be deleted after download (cleanup endpoint provided)
-
-**Security Considerations**:
-- File type and size validation (supported formats, 50MB limit)
-- UUID-based file naming prevents path traversal
-- Temporary storage (files not persisted long-term)
-
-#### 4. **Agent Translation Service Design**
-
-The agent-based translation service includes:
-- **Model**: GPT-4o-mini (cost-effective for development)
-- **Temperature**: 0.3 (lower for consistent translations)
-- **System Prompt**: Professional translator persona
-- **User Prompt**: Clear instructions to preserve formatting
-- **Retry Logic**: Exponential backoff (3 attempts: 1s, 2s, 4s delays)
-- **Chunking**: Automatic for large documents with context preservation
-- **Observability**: Full tracing and metrics collection
-
-**Why GPT-4o-mini?**
-- Cost-effective during development
-- Sufficient quality for most translations
-- Can be upgraded to GPT-4o for production if needed
-
-**Retry Strategy**:
-- Exponential backoff prevents API rate limit issues
-- Handles transient network errors
-- Comprehensive error logging for debugging
-
-#### 5. **Frontend UX Decisions**
-
-- **Drag-and-drop**: Intuitive file upload
-- **Progress Indicators**: Clear feedback during processing
-- **Error Handling**: User-friendly error messages
-- **Stark Branding**: Gradient color scheme matching Stark's brand
-- **Responsive Design**: Works on desktop and mobile
-
-## Project Structure
-
-```
-.
-├── backend/
-│   ├── main.py                    # FastAPI application
-│   ├── mcp_server.py               # MCP server for IDE integration (stdio + HTTP)
-│   ├── observability.py            # Tracing and metrics
-│   ├── pytest.ini
-│   ├── requirements.txt
-│   ├── requirements-dev.txt        # pytest, pytest-cov, httpx
-│   ├── services/
-│   │   ├── agent_translation_service.py  # Translation with chunking, used by API and MCP
-│   │   ├── file_processor.py             # Multi-format extract/create
-│   │   ├── translation_memory.py         # LRU cache for repeated phrases
-│   │   ├── agents/                       # SDK workflow and orchestrator
-│   │   │   ├── sdk_translation_workflow.py  # Agent + tools (extract, translate, validate)
-│   │   │   ├── agent_orchestrator.py       # Delegates to SDK workflow
-│   │   │   ├── extraction_agent.py
-│   │   │   ├── translation_agent.py
-│   │   │   └── validation_agent.py
-│   │   └── document_processors/
-│   │       ├── pdf_service.py
-│   │       ├── docx_service.py
-│   │       ├── pptx_service.py
-│   │       ├── markdown_service.py
-│   │       ├── text_service.py
-│   │       ├── json_service.py
-│   │       └── xml_service.py
-│   ├── tests/                    # Unit and integration tests
-│   └── Dockerfile
-├── frontend/
-│   ├── src/
-│   │   ├── App.js
-│   │   ├── components/
-│   │   │   ├── upload/           # FileUpload
-│   │   │   ├── translation/      # TranslationForm, ProgressIndicator, ResultDisplay, BatchResultDisplay
-│   │   │   ├── preview/          # SideBySidePreview
-│   │   │   ├── history/          # TranslationHistory
-│   │   │   └── layout/           # LanguageSelector, Chatbot
-│   │   ├── contexts/
-│   │   ├── data/
-│   │   ├── translations/
-│   │   └── index.js
-│   ├── package.json
-│   └── Dockerfile
-├── docker-compose.yml
-├── .env.example
-├── README.md
-├── PROMPTS.md
-├── TESTING.md                   # How to run tests
-├── MCP_SETUP.md                 # MCP server setup for Cursor
-└── RETROSPECTIVE.md
+```bash
+cp .env.example .env
 ```
 
-## Getting Started
+Put your key in `.env` as `OPENAI_API_KEY`, then:
 
-### Prerequisites
+```bash
+docker compose up --build
+```
 
-- Docker and Docker Compose installed
-- OpenAI API key
+- App: http://localhost:3000
+- API: http://localhost:8000
+- Interactive API docs: http://localhost:8000/docs
 
-### Installation
+### Without Docker
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd "Document Translator"
-   ```
+Backend:
 
-2. **Set up environment variables**
-   ```bash
-   cp .env.example .env
-   # Edit .env and add your OPENAI_API_KEY
-   ```
-
-3. **Build and run with Docker Compose**
-   ```bash
-   docker compose up --build
-   ```
-
-4. **Access the application**
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:8000
-   - API Docs: http://localhost:8000/docs
-
-## Usage
-
-1. **Upload a document**: Drag and drop or click to browse (PDF, DOCX, MD, TXT, JSON, XML, PPTX). For batch, upload multiple files.
-2. **Select target language**: Choose from the dropdown (optional: source language or auto-detect).
-3. **Translate**: Click "Translate Document" or "Translate All" for batch. Optionally enable real-time progress.
-4. **Download**: Download the translated file(s). Use Translation History for past jobs and side-by-side preview.
-
-## API Endpoints
-
-- `POST /api/upload` - Upload a document (PDF, DOCX, PPTX, MD, TXT, JSON, XML)
-- `POST /api/translate` - Translate an uploaded document (optional `source_language`; returns `detected_source_language` when auto-detected)
-- `POST /api/translate-batch` - Translate multiple files at once
-- `POST /api/translate-async` - Start async translation; returns `job_id`
-- `GET /api/translate/status/{job_id}` - Poll async job progress
-- `GET /api/download/{file_id}` - Download translated file
-- `GET /api/extract-text/{file_id}` - Extract text (e.g. for chatbot)
-- `GET /api/translated-text/{file_id}` - Get translated text for preview
-- `GET /api/preview?original_file_id=…&translated_file_id=…` - Side-by-side text
-- `GET /api/history` - Translation history
-- `GET /api/metrics` - Metrics and observability
-- `DELETE /api/cleanup/{file_id}` - Clean up files
-- `GET /health` - Health check
-
-## Testing Guide
-
-### Automated tests
-
-The project has **unit**, **integration**, and **user flow** tests so you can add features (e.g. auto-detect language, translation memory) safely.
-
-- **Backend:** From project root: `python -m pytest backend/tests/ -v`. From backend: `cd backend && pytest -v`. Install test deps: `pip install -r backend/requirements-dev.txt`.
-- **Frontend:** `cd frontend && npm test -- --watchAll=false`.
-
-See **[TESTING.md](TESTING.md)** for details (what’s covered, coverage, and how to run subsets).
-
-### Manual Testing Steps
-
-1. **Basic Translation Flow**
-   - Upload a simple PDF (1-2 pages)
-   - Select Spanish as target language
-   - Verify translation completes
-   - Download and verify translated PDF
-
-2. **Error Handling**
-   - Try uploading an unsupported file type (e.g. .csv) — should show error
-   - Try uploading a very large file — should show size limit error
-   - Try translating without uploading — should show error
-
-3. **UI/UX Testing**
-   - Test drag-and-drop file upload
-   - Verify progress indicators show correctly
-   - Test on different screen sizes (responsive design)
-   - Verify error messages are clear and actionable
-
-4. **API Testing**
-   - Use `/docs` endpoint to test API directly
-   - Test all endpoints with valid and invalid inputs
-   - Verify CORS is working (frontend can call backend)
-
-### Test Files
-
-For manual testing, use any supported document (PDF, DOCX, TXT, etc.). Recommended:
-- Small file (1–2 pages) for quick runs
-- Multi-page or long document to exercise chunking
-- Document with tables/images to see current formatting limits
-
-## Development
-
-### Running Locally (without Docker)
-
-**Backend:**
 ```bash
 cd backend
 pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-**Frontend:**
+Frontend, in another terminal:
+
 ```bash
 cd frontend
 npm install
 npm start
 ```
 
-### Environment Variables
+Optional environment variables:
 
-Required:
-- `OPENAI_API_KEY`: Your OpenAI API key
+- `ENVIRONMENT` — `development` or `production` (default `development`)
+- `REACT_APP_API_URL` — backend URL for the frontend (default `http://localhost:8000`)
 
-Optional:
-- `ENVIRONMENT`: development/production (default: development)
-- `REACT_APP_API_URL`: Backend API URL (default: http://localhost:8000)
+## API
 
-## Implemented Features
+| Method | Path | Purpose |
+| --- | --- | --- |
+| POST | `/api/upload` | Store a document and return a file id |
+| POST | `/api/translate` | Translate one uploaded file |
+| POST | `/api/translate-batch` | Translate several files |
+| POST | `/api/translate-async` | Start a translation and return a job id |
+| GET | `/api/translate/status/{job_id}` | Poll progress for an async job |
+| GET | `/api/download/{file_id}` | Download a translated file |
+| GET | `/api/preview` | Original and translated text for one pair of ids |
+| GET | `/api/history` | Recent translations |
+| GET | `/api/extract-text/{file_id}` | Plain text of an uploaded file |
+| GET | `/api/translated-text/{file_id}` | Plain text of a translation |
+| GET | `/api/metrics` | Request traces and counters |
+| DELETE | `/api/cleanup/{file_id}` | Remove stored files for an id |
+| GET | `/health` | Health check |
+| POST | `/mcp` | Same translation tools over MCP (HTTP) |
 
-1. **Multi-format support**: PDF, DOCX, PPTX, Markdown, TXT, JSON, XML
-2. **OpenAI Agents SDK**: One agent with three tools (extract_document, translate_text, validate_translation); Extraction → Translation → Validation pipeline
-3. **Chunking**: Automatic for large documents with context preservation
-4. **Auto-detect source language** and **translation memory** (LRU cache)
-5. **Batch processing**: Upload multiple files → translate all → download each result
-6. **Side-by-side preview**: Original vs translated text (from history or after translate)
-7. **Real-time progress**: Optional async translation with progress polling
-8. **Translation history**: List of past translations with download and preview
-9. **Observability**: Tracing, metrics (`/api/metrics`), structured logging
-10. **MCP server**: Model Context Protocol server for Cursor/IDE (see [MCP_SETUP.md](MCP_SETUP.md))
-11. **i18n**: UI in English, Spanish, French, Catalan
-12. **Stark branding**: Dark theme, clear feedback, error handling
+## Project layout
 
-## Security Considerations
+```
+backend/
+  main.py                         FastAPI app
+  mcp_server.py                   MCP server (stdio and HTTP)
+  observability.py                Tracing and metrics
+  services/
+    agent_translation_service.py  Chunking, retries, cache
+    file_processor.py             Read and write every format
+    translation_memory.py         Cache of repeated phrases
+    agents/                       Agent, tools, and orchestrator
+    document_processors/          PDF, DOCX, PPTX, MD, TXT, JSON, XML
+  tests/                          Unit and API tests
+frontend/
+  src/
+    components/                   Upload, translation, preview, history, chat
+    translations/                 Interface copy (en, es, fr, ca)
+    data/knowledgeBase.json       Answers for the helper chat
+test-files/                       Sample documents, one per format
+docker-compose.yml
+```
 
-- **API Key Security**: The OpenAI API key is stored in a `.env` file which is gitignored and never committed to the repository
-- File type and size validation (supported formats, 50MB limit)
-- UUID-based file naming
-- Input sanitization
-- CORS configuration
-- Environment variable management (no secrets in code)
-- The `.env` file must be created locally and is never shared or committed
+## Tests
 
-## Cost Management
+Backend (from the repo root, with test dependencies installed):
 
-- Using GPT-4o-mini for cost-effective development
-- Single API call per translation (no unnecessary calls)
-- Can upgrade to GPT-4o for production if quality requires it
+```bash
+pip install -r backend/requirements-dev.txt
+python -m pytest backend/tests/ -v
+```
 
-## License
+Frontend:
 
-This project is part of an AI Engineer assessment.
+```bash
+cd frontend
+npm test -- --watchAll=false
+```
 
+Translation calls are mocked, so the tests do not spend API credit. Details of what each suite covers are in [TESTING.md](TESTING.md).
+
+## Use it from an editor
+
+The same translation service is exposed as an MCP server, over stdio or at `POST /mcp` on the running API. Setup for Cursor is in [MCP_SETUP.md](MCP_SETUP.md).

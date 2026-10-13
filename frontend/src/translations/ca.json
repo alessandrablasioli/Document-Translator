@@ -1,7 +1,7 @@
 {
   "app": {
-    "title": "Stark",
-    "subtitle": "Traductor de Documents"
+    "title": "Traductor de Documents",
+    "subtitle": "Traducció amb IA"
   },
   "upload": {
     "title": "Pujar Document",
@@ -51,7 +51,7 @@
     "uploadFirst": "Si us plau, puja un fitxer primer"
   },
   "footer": {
-    "poweredBy": "Desenvolupat per OpenAI Agents SDK | Stark Future"
+    "poweredBy": "Desenvolupat per OpenAI Agents SDK"
   },
   "chatbot": {
     "greeting": "Hola! Estic aquí per ajudar-te amb la traducció de documents. Necessites ajuda?",
